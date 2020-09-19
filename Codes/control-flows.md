@@ -1,58 +1,58 @@
-# Low-Level Code Reference
+# Low-Level Reference Code
 
-General Overview of Program Control Flow
+General Overview of Control Flow Program
 
 ## What is Control Flow?
 
-`Control flow` atau flow of control adalah pengaturan urutan eksekusi atau evaluasi dari instruksi (statement).
+`Control flow` or flow of control is setting the sequence of execution or evaluation of instructions (statements).
 
 ## Categories
 
-Secara umum, control-flow dapat dikategorikan berdasarkan efek:
+In general, control-flow can be categorized by effect:
 
-- Meneruskan eksekusi instruksi ke lokasi berbeda (unconditional jump)
-- Eksekusi sekelompok instruksi ketika sebuah kondisi terpenuhi (choice atau branch)
-- Eksekusi sekelompok instruksi sebanyak nol kali atau lebih dalam kondisi tertentu (loop, modifikasi dari conditional jump).
-- Eksekusi sekelompok instruksi sebagai satu kesatuan aksi (subroutine, function).
-- Menghentikan program, mencegah adanya eksekusi selanjutnya. 
+- Pass instructions execution to a different location (unconditional jump)
+- Execute a group of instructions when a condition is met (choice or branch)
+- Execute a group of instructions zero or more times under certain conditions (loop, modification of conditional jumps).
+- Execute a group of instructions as a single action (subroutine, function).
+- Stops the program, preventing further execution.
 
 ## Primitives
 
-Untuk dapat mengubah alur eksekusi instruksi, terdapat setidaknya dua komponen dalam bahasa assembly (serta banyak low-level code lain), yaitu:
+To be able to change the flow of instruction execution, there are at least two components in assembly language (as well as many other low-level code), namely:
 
-- *Jumps*: statement untuk berpindah posisi, baik berupa unconditional maupun conditional. 
-- *Labels*: nama atau angka yang secara eksplisit diberikan kepada posisi tertentu dalam kode sehingga dapat digunakan sebagai acuan untuk berpindah sehingga eksekusi selanjutnya akan dimulai dari posisi tersebut.
+- * Jumps *: statement to change positions, either unconditional or conditional.
+- * Labels *: names or numbers that are explicitly given to a certain position in the code so that it can be used as a reference to move so that the next execution will start from that position.
 
 ## Branch
 
-Percabangan (branch) adalah tindakan perubahan lokasi atau urutan ke barisan instruksi di lokasi lain sebagai hasil dari evaluasi kondisi. 
+Branching is the act of changing a location or sequence to a line of instructions at another location as a result of a condition evaluation.
 
-Jika dilihat dari sisi bahasa tingkat tinggi, terdapat beberapa model percabangan antara lain:
+When viewed from a high-level language perspective, there are several branching models, including:
 
-- If-Then-(Else)
-- Switch-Case 
+- If-Then- (Else)
+- Switch-Case
 
-### If-Then-(Else) Statements
+### If-Then- (Else) Statements
 
-Percabangan yang mengarahkan ke sekelompok instruksi jika kondisi terpenuhi. Percabangan dapat pula terdiri dari beberapa alternatif aksi, masing-masing dengan kondisi yang saling komplemen.
+Branching which leads to a group of instructions if the conditions are met. Branching can also consist of several alternative actions, each with complementary conditions.
 
 ### Switch-Case Statements
 
-Percabangan dengan beragam kondisi alternatif berdasarkan nilai. Sebuah Jump Table digunakan untuk menentukan blok target yang akan dieksekusi ketika melompat.
+Branching with a variety of alternative conditions based on value. A Jump Table is used to define the target block to be executed when jumping.
 
 ## Loops
 
-Perulangan (loop) adalah variasi dari percabangan. Loop adalah serangkaian instruksi yang ditulis sekali namun dapat dieksekusi berkali-kali secara berturut-turut.
+Loops are a variation of branching. Loop is a series of instructions that are written once but can be executed many times in succession.
 
-Jika dilihat dari sisi bahasa tingkat tinggi, terdapat beberapa model perulangan antara lain:
+When viewed from the side of high-level language, there are several looping models, including:
 
 - For (Count-Controlled Loop)
 - While (Condition-Controlled Loop)
 
 ### Count-Controlled Loops
 
-Perulangan yang dikendalikan menggunakan sebuah counter untuk mengeksekusi blok sebanyak sekian kali. Nilai counter berubah seiring waktu dengan setiap langkah perulangan membuat counter mendekati sebuah nilai ambang batas.
+The controlled loop uses a counter to execute the block multiple times. The counter value changes over time with each loop step bringing the counter closer to a threshold value.
 
 ### Condition-Controlled Loops
 
-Perulangan yang dikendalikan oleh evaluasi kondisi. Perulangan terjadi apabila suatu kondisi terpenuhi. Evaluasi kondisi dapat dilakukan di awal atau di akhir blok perulangan.
+Loop controlled by condition evaluation. Repetition occurs when a condition is met. Condition evaluation can be done at the beginning or at the end of the loop block.
