@@ -1,19 +1,19 @@
-# Low-Level Code Reference
+# Low-Level Reference Code
 
 Introduction to Interrupt & Exception
 
 ## Interrupt
 
-Interrupt adalah signal dari perangkat eksternal (umumnya I/O) kepada processor sebagai pertanda bahwa terdapat suatu kejadian yang harus ditangani oleh processor.
+An interrupt is a signal from an external device (generally I / O) to the processor as a sign that there is an event that must be handled by the processor.
 
-Kemunculan Interrupt tidak mengubah flow eksekusi suatu program. 
+The occurrence of an interrupt does not change the execution flow of a program.
 
-Ketika processor mendapat Interrupt, processor akan menghentikan sementara semua eksekusi yang sedang terjadi kemudian mencari handler yang sesuai di Interrupt Table untuk menangani Interrupt tersebut. Selanjutnya, eksekusi normal akan dilanjutkan.
+When the processor gets an Interrupt, the processor will pause all the ongoing execution then look for the appropriate handler in the Interrupt Table to handle the Interrupt. Furthermore, normal execution will continue.
 
 ## Exception
 
-Exception adalah signal yang dibangkitkan ketika suatu kesalahan atau kondisi anomali terjadi saat eksekusi instruksi. Beberapa kesalahan atau anomali yang umum antara lain pembagian dengan nol, akses memori secara ilegal, dsb 
+Exceptions are signals that are generated when an error or anomalous condition occurs during instruction execution. Some of the common errors or anomalies include zero division, illegal memory access, etc.
 
-Kemunculan Exception memiliki kemungkinan untuk mengubah flow eksekusi suatu program.
+The occurrence of an exception has the possibility to change the execution flow of a program.
 
-Exception terdiri atas tiga jenis: Fault, Trap, dan Abort.
+Exceptions are of three types: Fault, Trap, and Abort.
