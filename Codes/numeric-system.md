@@ -1,25 +1,25 @@
-# Low-Level Code Reference
+# Low-Level Reference Code
 
 Introduction to Numerical System
 
 ## Numeric System
 
-Komputasi adalah manipulasi angka. Sebuah nilai dapat direpresentasikan ke dalam bentuk atau notasi berbeda.
+Computing is the manipulation of numbers. A value can be represented in different forms or notations.
 
 #### Binary Number System
 
-Sistem bilangan dengan basis 2.
+Base 2 number system.
 
-Untk setiap digit angka terdapat 2 kemungkinan angka, yaitu: 0 dan 1.
+For each digit, there are 2 possible numbers, namely: 0 and 1.
 
 #### Octal Number System
 
-Sistem bilangan dengan basis 8.
+Number system with base 8.
 
-Untk setiap digit angka terdapat 8 kemungkinan angka, yaitu: 0, 1, 2, 3, 4, 5, 6, 7.
+For each digit, there are 8 possible numbers, namely: 0, 1, 2, 3, 4, 5, 6, 7.
 
 #### Hexadecimal Number System
 
-Sistem bilangan dengan basis 16.
+Number system with base 16.
 
-Untk setiap digit angka terdapat 16 kemungkinan angka, yaitu: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+For each digit there are 16 possible numbers, namely: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
