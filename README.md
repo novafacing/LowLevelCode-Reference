@@ -1,55 +1,55 @@
-# Low-Level Code Reference
+# Low-Level Reference Code
 
-Open repository for learning low-level code.
+Open repository for low-level code learning.
 
-### Selayang Pandang
+### Overview
 
-Repositori ini menghimpun informasi pembelajaran low-level code (assembly, bytecode, immediate representation, dsb) untuk berbagai arsitektur, platform, dan dialek. Cakupan repositori ini tidak hanya terbatas kepada prosesor (hardware), namun juga meluas hingga mencakup berbagai process virtual machine seperti JVM (Java Bytecode), CLR (.Net CIL), LLVM IR, dsb.
+This repository collects low-level code learning information (assembly, bytecode, immediate representation, etc.) for various architectures, platforms, and dialects. The scope of this repository is not only limited to the processor (hardware), but also extends to include various virtual machine processes such as JVM (Java Bytecode), CLR (.Net CIL), LLVM IR, etc.
 
-Semua code yang disertakan dalam reposiotry ini memberikan instruksi untuk melakukan kompilasi.
+All code included in this reposiotry provides instructions for compiling.
 
-### Tentang Low-Level Code
+### About Low-Level Code
 
-`Low-level code` (kode tingkat rendah) adalah abstraksi sekelompok instruksi dari sebuah processor untuk memberikan perintah dan memproses data sesuai dengan kemampuan yang diberikan oleh masing-masing processor. Kata "low" (rendah) merujuk kepada tingkat abstraksi yang minimalistik antara bahasa dan instruksi asli dari processor.
+`Low-level code` (low-level code) is an abstraction of a group of instructions from a processor to give orders and process data according to the capabilities given by each processor. The word "low" refers to a minimalistic level of abstraction between the language and the processor's native instructions.
 
-Istilah `processor` di repositori ini merujuk ke sebuah istilah umum untuk menyebut perangkat keras (microprocessor, microcontroller) maupun perangkat lunak (interpreter, process virtual machine, p-code machine) yang mengeksekusi kode tertentu untuk memproses data. 
+The term `processor` in this repository refers to a general term for hardware (microprocessor, microcontroller) or software (interpreter, process virtual machine, p-code machine) that executes certain code to process data.
 
-Instruksi yang dibahas adalah instruksi level rendah yang dipahami masing-masing processor dengan cakupan instruksi untuk melakukan pemindahan data, operasi aritmetik, pengecekan kondisi, dsb. 
+The instructions discussed are low-level instructions that are understood by each processor with a scope of instructions for performing data transfers, arithmetic operations, checking conditions, etc.
 
-Low-Level Code (Assembly, IR, IL dsb) adalah bahasa kunci dalam Reverse Engineering.
+Low-Level Code (Assembly, IR, IL etc.) is a key language in Reverse Engineering.
 
 ### Disclaimer
 
-Repositori ini merupakan inisiatif dari komunitas Reversing.ID untuk memperkenalkan dan mendalami low-level code.
+This repository is an initiative of the Reversing.ID community to introduce and explore low-level code.
 
-Reversing.ID tidak berafiliasi dengna vendor atau manufaktur device manapun. Repository ini memiliki tujuan utama sebagai bahan belajar low-level code dan assembly.
+Reversing.ID is not affiliated with any device vendor or manufacturer. This repository has the main purpose of learning materials for low-level code and assembly.
 
-### Struktur dan Konten
+### Structure and Content
 
-Repositori ini terbagi menjadi beberapa bagian dengan direktori berbeda.
+The repository is divided into sections with different directories.
 
 - Codes
 - References
 - Tools
 
-_Codes_ adalah koleksi potongan kode spesifik terhadap masing-masing low-level code. Direktori ini memberikan pandangan secara bottom-up terhadap bahasa assembly dimana assembly dilihat sebagai building block. Pembagian kode direktori didasarkan kepada platform (processor, VM, dsb). Setiap platform akan memiliki satu atau lebih varian atau dialek yang bisa dikompilasi.
+_Codes_ is a collection of code snippets specific to each low-level code. This directory provides a bottom-up view of assembly language where assemblies are viewed as building blocks. The distribution of directory code is based on the platform (processor, VM, etc.). Each platform will have one or more variants or dialects to compile.
 
-_References_ adalah himpunan referensi berupa artikel, tulisan, jurnal, dsb yang memberikan pemahaman terhadap sebuah low-level code. Direktori ini umumnya berisi referensi utama yang dikeluarkan oleh masing-masing vendor.
+_References_ is a set of references in the form of articles, writings, journals, etc. which provide an understanding of a low-level code. This directory generally contains the main references issued by each vendor.
 
-_Tools_ adalah bagian yang secara khusus merangkum daftar peralatan (tools) yang digunakan untuk analisis low-level code atau memanfaatkan low-level code untuk analisis lain. Meski tidak membahas detail penggunaan masing-masing tools, direktori ini menjelaskan secara garis besar kemampuan dan potensi dari setiap tools.
+_Tools_ is a section that specifically summarizes a list of tools used for low-level code analysis or utilizing low-level code for other analyzes. Although it doesn't cover the details of using each tool, this directory outlines the capabilities and potential of each tool.
 
 ### How to Download?
 
-Repository dapat diunduh secara keseluruhan atau kode dapat diunduh secara terpisah. 
+The repository can be downloaded in its entirety or the code can be downloaded separately.
 
 ### How to Contribute?
 
-Ini adalah projek terbuka.
+This is an open project.
 
-Kamu bisa memberikan sumbangsih berupa kode untuk arsitektur yang belum terdaftar, menambah atau memodifikasi kode yang sudah ada untuk memberikan informasi yang lebih baik.
+You can contribute code for unregistered architectures, add or modify existing code to provide better information.
 
-Yang harus kamu lakukan:
+What you have to do:
 
-- melakukan pull request.
-- mengirimkan email ke pengurus [at] reversing.id
-- memberi tahu di telegram @ReversingID
+- do a pull request.
+- send an email to the management [at] reversing.id
+- notified on telegram @ReversingID
