@@ -1,33 +1,33 @@
-# Low-Level Code Reference
+# Low-Level Reference Code
 
 Introduction to Assembly.
 
-## Assembly 
+## Assembly
 
-`Assembly` adalah pemetaan kode-kode instruksi sebuah processor ke dalam representasi yang mudah dipahami oleh manusia.
+`Assembly` is the mapping of code instructions of a processor into a representation that is easy for humans to understand.
 
-Masing-masing processor menawarkan beragam teknologi yang dapat digunakan melalui instruksi-instruksi tertentu. Sekelompok instruksi (Instruction Set) dapat sangat spesifik dan berbeda dengan processor lain.
+Each processor offers a variety of technologies that can be used through certain instructions. A group of instructions (Instruction Set) can be very specific and different from other processors.
 
-Assembly merupakan kumpulan kata-kata, disebut pula `Mnemonic`, yang merepresentasikan instruksi processor. Tidak ada aturan baku yang menyatakan penamaan sebuah Mnemonic sehingga jenis instruksi yang sama dapat direpresentasikan secara berbeda di Assembly untuk processor yang berbeda.
+Assembly is a collection of words, also called `Mnemonic`, which represent processor instructions. There is no set rule that states the naming of a Mnemonic so that the same type of instruction can be represented differently in Assembly for different processors.
 
-Singkatnya, assembly adalah low-level language yang didesain spesifik untuk keluarga processor tertentu yang merepresentasikan instruksi dengan kode simbolis.
+In short, assembly is a low-level language specifically designed for a particular processor family that represents instructions with symbolic code.
 
 ## Advantages
 
-Memahami bahasa assembly memberikan keuntungan, bukan hanya untuk Reverse Engineering tetapi juga Development. Penguasaan terhadap assembly memberikan pemahaman terhadap:
+Understanding assembly language provides advantages, not only for Reverse Engineering but also Development. Mastery of assembly provides understanding of:
 
-- bagaimana processor mengakses dan mengeksekusi instruksi
-- bagaimana instruksi mengakses dan memproses data
-- bagaimana data direpresentasikan di memori
-- bagaimana program berinteraksi dengan OS, processor, dan perangkat lain.
+- how the processor accesses and executes instructions
+- how the instructions access and process data
+- how data is represented in memory
+- how the program interacts with the OS, processor, and other devices.
 
-Pemahaman terhadap instruksi Assembly dapat membantu dalam analisis kode yang kompleks dan menjebak (misal: obfuscation).
+Understanding Assembly instructions can assist in complex and tricky code analysis (eg obfuscation).
 
 ## Data Size
 
-Processor beroperasi melakukan perhitungan terhadap data dengan ukuran tetap. Ukuran ini berbeda untuk setiap processor. Istilah seperti `64-bit processor` atau `32-bit processor` merujuk kepada ukuran data yang dapat dioperasikan oleh sebuah operasi.
+The processor operates to calculate data with a fixed size. This size is different for each processor. Terms such as `64-bit processor` or` 32-bit processor` refer to the size of data that an operation can operate.
 
-Secara umum, terdapat beberapa istilah untuk menyebut potongan data.
+In general, there are several terms to describe chunks of data.
 
 - Byte: 8-bit
 - Word: 2-byte, 16-bit
@@ -36,14 +36,14 @@ Secara umum, terdapat beberapa istilah untuk menyebut potongan data.
 
 ## Instruction Length
 
-Tidak ada batasan terhadap panjang sebuah instruksi. Beberapa arsitektur memiliki instruksi dengan panjang tetap (sama untuk setiap instruksi lain). Sementara arsitektur lain menerapkan panjang instruksi yang bervariasi (variable-length instruction), dimana panjang sebuah instruksi bisa terdiri dari satu byte atau lebih.
+There is no limit to the length of an instruction. Some architectures have fixed length instructions (the same for every other instruction). While other architectures apply variable-length instructions, where the length of an instruction can consist of one or more bytes.
 
 ## Execution Cycle
 
-Eksekusi sebuah isntruksi yang tersimpan di memori membutuhkan beberapa tahapan (stages). Tahapan ini disebut sebagai `Execution Cycle`. Implementasi execution cycle dapat berbeda tergantung dari arsitektur tersebut. Umumnya terdapat 3 stages untuk mengeksekusi sebuah instruksi:
+The execution of an instruction stored in memory requires several stages. This stage is known as the `Execution Cycle`. The implementation of the execution cycle can differ depending on the architecture. There are generally 3 stages to execute an instruction:
 
-- *fetch*: mengambil instruksi dari memori dengan representasi untaian byte.
-- *decode*: decode menerjemahkan code sebagai instruksi yang akan diterjemahkan oleh processor..
-- *execute*: menjalankan instruksi dan memberikan hasil.
+- * fetch *: retrieves instructions from memory with a string representation of bytes.
+- * decode *: decode translates code as instructions that will be translated by the processor.
+- * execute *: execute instructions and give result.
 
-Para processor sederhana, eksekusi instruksi dilakukan secara sekuensial dengan satu Execution Cycle akan dilakukan setelah Execution Cycle sebelumnya telah selesai dilakukan. Pada kebanyakan processor modern, Execution Cycle dilakukan secara konkuren dan bahkan secara paralel, melalui `Instruction Pipeline`. Sebuah Execution Cycle dapat dimulai ketika Execution Cycle sebelumnya sedang diproses (tanpa menunggu selesai).
+For simple processors, instruction execution is carried out sequentially with one Execution Cycle being executed after the previous Execution Cycle has been completed. In most modern processors, the Execution Cycle is carried out concurrently and even in parallel, via the `Instruction Pipeline`. An Execution Cycle can be started while the previous Execution Cycle is being processed (without waiting for completion).
