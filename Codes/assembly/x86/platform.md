@@ -1,12 +1,12 @@
-# Low-Level Code Reference
+# Low-Level Reference Code
 
 x86 Platform Specific Information
 
 ## Data Size
 
-Istilah yang digunakan untuk merujuk ukuran data yang dapat dioperasikan oleh processor dalam setiap cycle.
+The term used to refer to the size of data that the processor can operate in each cycle.
 
-Secara umum, terdapat beberapa istilah di x86 untuk menyebut potongan data.
+In general, there are several terms in x86 to describe chunks of data.
 
 - Byte: 8-bit
 - Word: 2-byte, 16-bit
@@ -15,22 +15,22 @@ Secara umum, terdapat beberapa istilah di x86 untuk menyebut potongan data.
 
 ## Registers
 
-Sebuah register adalah suatu bagian di processor yang digunakan untuk menampung data sementara dalam proses perhitungan. Register adalah wadah khusus dan dapat diakses dengan sangat cepat oleh processor (lebih tepatnya komponen ALU di prosessor).
+A register is a part of the processor that is used to hold temporary data in the calculation process. The register is a special container and can be accessed very quickly by the processor (more precisely the ALU component in the processor).
 
-x86 memiliki beberapa register, antara lain:
+x86 has several registers, including:
 
-* General Purposes Register (32-bit dan 64-bit)
-    - Data Registers
-        - EAX/RAX: Accumulator
-        - EBX/RBX: Base address untuk memory access
-        - ECX/RCX: Counter
-        - EDX/RDX: Data
+* General Purposes Register (32-bit and 64-bit)
+    - Registers data
+        - EAX / RAX: Accumulator
+        - EBX / RBX: Base address for memory access
+        - ECX / RCX: Counter
+        - EDX / RDX: Data
     - Pointer Registers
-        - ESP/RSP: Stack Pointer
-        - EBP/RBP: Base Pointer
+        - ESP / RSP: Stack Pointer
+        - EBP / RBP: Base Pointer
     - Index Registers
-        - ESI/RSI: Source Index
-        - EDI/RDI: Destination Index
+        - ESI / RSI: Source Index
+        - EDI / RDI: Destination Index
 * Segment Registers (limited access)
     - CS: Code
     - DS: Data
@@ -39,8 +39,8 @@ x86 memiliki beberapa register, antara lain:
     - FS: Extra
     - GS: Extra
 * Status / Control Registers
-    - Control Registers (limited access): CR0 hingga CR4
-    - Debug Registers (limited access): DR0 hingga DR3
+    - Control Registers (limited access): CR0 to CR4
+    - Debug Registers (limited access): DR0 to DR3
     - Other Registers (no direct access)
         - EIP: Instruction pointer
         - EFLAGS: Flags
@@ -48,37 +48,37 @@ x86 memiliki beberapa register, antara lain:
 
 #### General Purpose Register
 
-Arsitektur x86 memiliki beberapa register yang dibagi menjadi beberapa kategori. General Purpose Register adalah sekelompok register yang dapat digunakan untuk menyimpan apapun dan keperluan apapun. Meski demikian, masing-masing dari mereka awalnya memiliki tujuan / fungsi khusus tapi menjadi keharusan untuk ditaati. GPR dapat dibagi menjadi tiga kategori register: Data Register, Pointer Register, dan Index Register.
+The x86 architecture has several registers that are divided into categories. General Purpose Register is a group of registers that can be used to store anything and any purposes. However, each of them initially has a specific purpose / function but becomes imperative to obey. GPR can be divided into three register categories: Data Registers, Pointer Registers, and Index Registers.
 
-`EAX/RAX` disebut pula Accumulator. Sering digunakan untuk operasi terkait I/O, operasi matematka, dan interrupts. `EBX/RBX` merupakan Base address yang digunakan sebagai Base pointer untuk memory access. `ECX/RCX` adalah counter, sering digunakan dalam loop yang membutuhkan counter. `EDX/RDX` adalah Data, mirip dengan EAX/RAX dan digunakan sebagai ekstensi ketika operasi matematika.
+`EAX / RAX` is also called the Accumulator. Often used for I / O related operations, math operations, and interrupts. `EBX / RBX` is the Base address which is used as the Base pointer for memory access. `ECX / RCX` is a counter, often used in loops that require counters. `EDX / RDX` is Data, similar to EAX / RAX and is used as an extension when performing math operations.
 
-Register 32-bit memiliki prefiks E, contohnya EAX. Sementara register 64-bit memiliki prefiks R, contohnya RAX. Untuk beberapa register (EAX, EBX, ECX, EDX), kita dapat mengakses bagian bawah dari register dengan menghilangkan prefiks. Sehingga:
+32-bit registers have the prefix E, for example EAX. While 64-bit registers have the prefix R, for example RAX. For some registers (EAX, EBX, ECX, EDX), we can access the bottom of the register by removing the prefix. So that:
 
 - EAX (32-bit) -> AX (16-bit)
 - EBX (32-bit) -> BX (16-bit)
 - ECX (32-bit) -> CX (16-bit)
 - EDX (32-bit) -> DX (16-bit)
 
-Fungsi awal register
+Register start function
 
-Lebih jauh lagi, kita dapat mengakses paruh atas dan paruh bawah dari AX/BX/CX/DX dengan mengganti X dengan H (Higher half) atau L (Lower half). Sehingga:
+Furthermore, we can access the upper half and lower half of AX / BX / CX / DX by replacing X with H (Higher half) or L (Lower half). So that:
 
 - AX (16-bit) = AH (8-bit) | AL (8-bit)
 - BX (16-bit) = BH (8-bit) | BL (8-bit)
 - CX (16-bit) = CH (8-bit) | CL (8-bit)
 - DX (16-bit) = DH (8-bit) | DL (8-bit)
 
-Kita dapat mengilustrasikannya seperti ini:
+We can illustrate it like this:
 
-```
-    RAX                  EAX        AX
+``
+    RAX EAX AX
     --------------------------------------------
-    |                     |          | AH | AL |
+    | | | AH | AL |
     --------------------------------------------
-    64                   32         16    8    0
-```
+    64 32 16 8 0
+``
 
-Untuk x86-64 (atau x64), terdapat tambahan register dari R8 hingga R15. Register R0 hingga R7 memiliki identitas lain untuk nama register yang sudah ada, seperti:
+For x86-64 (or x64), there are additional registers from R8 to R15. Registers R0 through R7 have other identities for existing register names, such as:
 
 - R0 = RAX
 - R1 = RCX
@@ -89,110 +89,110 @@ Untuk x86-64 (atau x64), terdapat tambahan register dari R8 hingga R15. Register
 - R6 = RSI
 - R7 = RDI
 
-Untuk mengakses paruh bawah (32-bit) dari register R-, kita dapat memberikan sufiks D (DWord). Paruh bawah lagi dapat diakses dengan sufiks W (Word). Ilustrasi dapat dilihat di bawah ini:
+To access the lower half (32-bit) of the R- register, we can pass the suffix D (DWord). The lower half again can be accessed with the suffix W (Word). The illustration can be seen below:
 
-```
-    R8                   R8D        R8W  R8B
+``
+    R8 R8D R8W R8B
     --------------------------------------------
-    |                     |          |    |    |
+    | | | | |
     --------------------------------------------
-    64                   32         16    8    0
-```
+    64 32 16 8 0
+``
 
 #### Segment Registers
 
-`Segment Register` adalah sekelompok register yang digunakan untuk mengakses segment memori. Segment sendiri adalah bagian dari memori yang berukuran kelipatan dari Page. Setiap segment memiliki fungsi tersendiri.
+`Segment Register` is a group of registers that are used to access the memory segment. Segment itself is a part of memory that is a multiple of the Page. Each segment has its own function.
 
-Segment yang ditunjuk oleh Segment Register bersifat penting selama aplikasi berjalan. `CS` berisi Code Segment, merujuk ke lokasi kode / instruksi program. `DS` berisi Data Segment, merujuk ke lokasi data yang diakses. `ES`, `FS`, `GS` adalah Segment Register tambahan yang umumnya digunakan oleh OS. Sebagai contoh, `GS` digunakan oleh Windows untuk menunjuk struktur data khusus (spesifik OS).
+The segment designated by the Segment Register is important as long as the application is running. `CS` contains Code Segment, refers to the location of the code / program instructions. `DS` contains Segment Data, refers to the location of the accessed data. `ES`,` FS`, `GS` are additional Segment Registers commonly used by the OS. For example, `GS` is used by Windows to designate special (OS specific) data structures.
 
 #### Control Registers
 
-`Control Register` adalah sekelompok register yang dapat mengubah atau mengendalikan perilaku dari processor (core). Setiap control register memiliki tujuan spesifik. 
+`Control Register` is a group of registers that can change or control the behavior of the processor (core). Each control register has a specific purpose.
 
 #### Debug Registers
 
-`Debug Register` adalah sekelompok register yang digunakan oleh processor untuk melakukan hardware debugging. Sebenarnya terdapat enam debug register: DR0, DR1, DR2, DR3, DR4/DR6, DR5/DR7. Register debug akan berisi alamat yang diawasi sebagai breakpoint di sisi hardware.
+The `Debug Register` is a group of registers used by the processor for hardware debugging. There are actually six debug registers: DR0, DR1, DR2, DR3, DR4 / DR6, DR5 / DR7. The debug register will contain addresses that are watched as breakpoints on the hardware side.
 
 #### Instruction Pointer
 
-`Instruction Pointer Register` adalah register yang menunjuk ke alamat memori tempat instruksi berikutnya akan dieksekusi. Disebut pula dengan `Program Counter (PC)` pada beberapa arsitektur lain. Hanya ada satu register untuk ini yaitu EIP (atau RIP untuk 64-bit).
+The `Instruction Pointer Register` is a register that points to the memory address where the next instruction will be executed. Also called the `` Program Counter (PC) '' on several other architectures. There is only one register for this which is EIP (or RIP for 64-bit).
 
-EIP (ataupun RIP) tidak dapat dimodifikasi secara langsung. Tidak ada instruksi yang dapat mengganti EIP.
+EIP (or RIP) cannot be modified directly. There are no instructions that can replace the EIP.
 
 #### EFLAGS
 
-`EFLAGS` adalah register yang merupakan kumpulan big-bit flag. Banyak instruksi. seperti perbandingan dan perhitungan matematika, memiliki efek samping. Efek samping dari masing-masing operasi ini direpresentasikan oleh bit-bit flag. Perubahan bit tersebut dapat mempengaruhi instruksi lain seperti conditional test sebagai acuan untuk melakukan control-flow.
+`EFLAGS` is a register which is a collection of big-bit flags. Lots of instructions. like comparisons and math calculations, have side effects. The side effects of each of these operations are represented by flag bits. Changes in these bits can affect other instructions such as conditional tests as a reference for performing control-flow.
 
-Flag yang umum antara lain:
+Common flags include:
 
-```
-    Flag:                              O    D    I    T    S    Z         A         P         C
-                ---------------------------------------------------------------------------------
-    Bit Flag    | 31 | 30 | 29 | 28 | 27 | 26 | 25 | 24 | 23 | 22 | 21 | 20 | 19 | 18 | 17 | 16 |
-                ---------------------------------------------------------------------------------
+``
+    Flag: O D I T S Z A P C
+                -------------------------------------------------- -------------------------------
+    Bit Flag | 31 | 30 | 29 | 28 | 27 | 26 | 25 | 24 | 23 | 22 | 21 | 20 | 19 | 18 | 17 | 16 |
+                -------------------------------------------------- -------------------------------
 
-    Flag:                              O    D    I    T    S    Z         A         P         C
-                ---------------------------------------------------------------------------------
-    Bit Flag    | 15 | 14 | 13 | 12 | 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2 |  1 |  0 |
-                ---------------------------------------------------------------------------------
-```
+    Flag: O D I T S Z A P C
+                -------------------------------------------------- -------------------------------
+    Bit Flag | 15 | 14 | 13 | 12 | 11 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+                -------------------------------------------------- -------------------------------
+``
 
-|--------|--------|------------------------------|
-|  Bit   | FLAG   | Description                  |
-|--------|--------|------------------------------|
-|   0    |   CF   | Carry Flag                   |
-|   2    |   PF   | Parity Flag                  |
-|   4    |   AF   | Auxiliary Carry Flag         |
-|   6    |   ZF   | Zero Flag                    |
-|   7    |   SF   | Sign Flag                    |
-|   8    |   TF   | Trap Flag                    |
-|   9    |   IF   | Interrupt Flag               |
-|  10    |   DF   | Direction Flag               |
-|  11    |   OF   | Overflow Flag                |
-| 12-13  |  IOPL  | I/O Priviledge Level         |
-|  14    |   NT   | Nested Task Flag             |
-|  16    |   RF   | Resume Flag                  |
-|  17    |   VM   | Virtual 8086-mode Flag       |
-|  18    |   AC   | Algignment Check             |
-|  19    |  VIF   | Virtual Interrupt Flag       |
-|  20    |  VIP   | Virtual Interrupt Pending    |
-|  21    |   ID   | ID Flag                      |
-|--------|--------|------------------------------|
+| -------- | -------- | ------------------------------ |
+| Bit | FLAG | Description |
+| -------- | -------- | ------------------------------ |
+| 0 | CF | Carry Flag |
+| 2 | PF | Parity Flag |
+| 4 | AF | Auxiliary Carry Flag |
+| 6 | ZF | Zero Flag |
+| 7 | SF | Sign Flag |
+| 8 | TF | Trap Flag |
+| 9 | IF | Interrupt Flag |
+| 10 | DF | Direction Flag |
+| 11 | OF | Overflow Flag |
+| 12-13 | IOPL | I / O Priviledge Level |
+| 14 | NT | Nested Task Flag |
+| 16 | RF | Resume Flag |
+| 17 | VM | Virtual 8086-mode Flag |
+| 18 | AC | Algignment Check |
+| 19 | VIF | Virtual Interrupt Flag |
+| 20 | VIP | Virtual Interrupt Pending |
+| 21 | ID | ID Flag |
+| -------- | -------- | ------------------------------ |
 
 #### MMX
 
-Termasuk ke dalam Instruction Set tambahan yang tak ada di generasi awal x86. Kebanyakan instruksinya merupakan SIMD (Single Instruction Multiple Data), yang artinya satu instruksi dapat bekerja dengan beberapa data secara paralel.
+Included in an additional Instruction Set not present in the early x86 generation. Most of the instructions are SIMD (Single Instruction Multiple Data), which means that one instruction can work with several data in parallel.
 
-Terdapat 8 MM register 64-bit, dari MM0 hingga MM7. Delapan register tersebut dibuat overlap dengan FPU register. Artinya, instruksi MMX dan FPU tidak dapat digunakan secara simultan.
+There are 8 MM of 64-bit registers, from MM0 to MM7. The eight registers overlap with the FPU register. This means that MMX and FPU instructions cannot be used simultaneously.
 
-Masing-masing register berukuran 64-bit namun dapat dipecah secara akses menjadi beberapa yaitu:
+Each register is 64-bit in size but can be broken down into several, namely:
 
 * 2x 32-bit value
 * 4x 16-bit value
-* 8x  8-bit value
+* 8x 8-bit value
 
-MMX mengimplementasikan teknik *Saturation Arithmetic*. Pada teknik ini, nilai register tidak pernah melebihi 0 jika overflow terjadi. Nilai juga tidak akan berubah menjadi MAX value jika underflow terjadi. Dengan kata lain, keadaan ini akan terjadi:
+MMX implements the * Saturation Arithmetic * technique. In this technique, the register value never exceeds 0 if an overflow occurs. The value will also not change to MAX value if an underflow occurs. In other words, this situation will occur:
 
-```
+``
 255 | 100 = 255
 200 | 100 = 255
 0 - 100 = 0
 99 - 100 = 0
-```
+``
 
-Hal ini nampak aneh bagi sebagian orang yang terbiasa menggunakan General Purpose Register. Tapi untuk kasus tertentu, hal ini berguna. Misal, untuk membuat warna lebih terang, maka tak seharusnya overflow terjadi sehingga dapat mengubah warna terang jadi gelap seketika.
+This may seem strange to some people who are accustomed to using the General Purpose Register. But in certain cases, it is useful. For example, to make the color lighter, the overflow should not occur so that it can change the light color to dark instantly.
 
 #### SSE (Streaming SIMD Extensions)
 
-`SSE` adalah register untuk operasi pecahan (floating point). Ukuran register ini adlaah 128-bit. Tapi register ini tak terbatas hanya digunakan untuk operasi pecahan saja tapi juga bisa digunakan untuk beragam ukuran data dan tipe berbeda.
+`SSE` is a register for floating point operations. The size of this register is 128-bit. But this register is not only used for fractional operations but can also be used for various data sizes and different types.
 
-Terdapat 8 SSE register 128-bit, dari XMM0 hingga XMM7. Tak seperti MMX, SSE tidak overlap dengan floating point stack.
+There are 8 128-bit SSE registers, from XMM0 to XMM7. Unlike MMX, SSE does not overlap the floating point stack.
 
-Register dengan ukuran 128-bit dapat dipecah menjadi beberapa bagian yaitu:
+The 128-bit register can be broken down into several parts, namely:
 
-* 2x  64-bit floating points (double-precision)
-* 2x  64-bit integers
-* 4x  32-bit floating points (single-precision)
-* 4x  32-bit integers
-* 8x  16-bit integers
-* 16x  8-bit characters (bytes)
+* 2x 64-bit floating points (double-precision)
+* 2x 64-bit integers
+* 4x 32-bit floating points (single-precision)
+* 4x 32-bit integers
+* 8x 16-bit integers
+* 16x 8-bit characters (bytes)
